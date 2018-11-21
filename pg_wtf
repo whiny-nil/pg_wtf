@@ -1,0 +1,28 @@
+#!/bin/bash
+# Desperately try to figure out what is wrong with postgres when your computer
+# crashes and postgres won't start after rebooting
+
+# This script assumes you are on macOS, and using postgres installed via
+# homebrew.
+
+# Uncomment one LOGFILE:
+# LOGFILE="/usr/local/var/postgres/server.log" # postgres < 9.6
+LOGFILE="/usr/local/var/log/postgres.log" # postgres >= 9.6
+PIDFILE="/usr/local/var/postgres/postmaster.pid"
+
+# 1. Tail the log file to give you a hint about the problem
+echo "Tailing log file ($LOGFILE):"
+tail "$LOGFILE"
+echo
+
+# 2. Check the postmaster PID file to see if the process it references is,
+#    in fact, the right process
+echo "Checking postmaster PID file ($PIDFILE):"
+echo "If the process listed IS NOT a postmaster instance, you should remove"
+echo "the PID file and try restarting postgres."
+ps wax | grep `head -1 "$PIDFILE"`
+echo
+
+# 3. Output some helpful info
+echo "Stopping postgres: \`brew services stop postgres\`"
+echo "Starting postgres: \`brew services start postgres\`"
