@@ -18,11 +18,12 @@ echo
 # 2. Check the postmaster PID file to see if the process it references is,
 #    in fact, the right process
 echo "Checking postmaster PID file ($PIDFILE):"
-echo "If the process listed IS NOT a postmaster instance, you should remove"
+echo "If the process listed IS NOT a postgres instance, you should remove"
 echo "the PID file and try restarting postgres."
 ps wax | grep `head -1 "$PIDFILE"`
 echo
 
 # 3. Output some helpful info
+echo "Some info:"
 echo "Stopping postgres: \`brew services stop postgres\`"
 echo "Starting postgres: \`brew services start postgres\`"
