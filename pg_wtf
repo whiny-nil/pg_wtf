@@ -7,8 +7,9 @@
 
 # Uncomment one LOGFILE:
 # LOGFILE="/usr/local/var/postgres/server.log" # postgres < 9.6
-LOGFILE="/usr/local/var/log/postgres.log" # postgres >= 9.6
-PIDFILE="/usr/local/var/postgres/postmaster.pid"
+# LOGFILE="/usr/local/var/log/postgres.log" # postgres >= 9.6
+LOGFILE="/usr/local/var/log/postgresql@10.log" # not technically using "postgres"
+PIDFILE="/usr/local/var/postgresql@10/postmaster.pid" # ditto
 
 # 1. Tail the log file to give you a hint about the problem
 echo "Tailing log file ($LOGFILE):"
@@ -25,5 +26,7 @@ echo
 
 # 3. Output some helpful info
 echo "Some info:"
+echo "You are actually using postgres@10, not postgres"
+echo "Info about postgres: \`brew info postgres\`"
 echo "Stopping postgres: \`brew services stop postgres\`"
 echo "Starting postgres: \`brew services start postgres\`"
