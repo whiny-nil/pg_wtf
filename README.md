@@ -1,8 +1,8 @@
 # pg_wtf
 
-A tiny troubleshooting script for when a Homebrew-installed PostgreSQL won't start on macOS — typically after a hard crash or reboot leaves a stale lock file behind.
+A tiny troubleshooting script for when a Homebrew-installed PostgreSQL won't start on macOS, usually after a hard crash or reboot leaves a stale lock file behind.
 
-Instead of remembering the incantations each time, `pg_wtf` gathers the usual first-look diagnostics in one shot:
+Instead of remembering the incantations each time, `pg_wtf` does it for you:
 
 1. Tails the Postgres log file for the most recent errors.
 2. Reads the `postmaster.pid` file and checks whether the referenced process is actually a Postgres instance (a stale PID file is a common reason it won't restart).
